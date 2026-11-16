@@ -1,0 +1,53 @@
+:root { --bg:#06191c; --ink:#bfeff5; --dim:#6aa9b1; }
+* { box-sizing:border-box; }
+html, body { margin:0; min-height:100%; }
+body {
+  background:var(--bg); color:var(--ink);
+  font-family:"Trebuchet MS", Verdana, sans-serif;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:18px; min-height:100vh; padding:16px;
+}
+
+/* Coffin backdrop (image is 2:1) */
+#panel {
+  position:relative; width:min(92vw, 820px); aspect-ratio:2/1;
+  background:url("Coffin.png") center/100% 100% no-repeat;
+  image-rendering:pixelated;
+  display:flex; align-items:center; justify-content:center; gap:96px; /* even spacing, centered */
+  padding:0 8%;
+}
+#panel.won   { animation:glow 1.2s ease-in-out infinite alternate; }
+#panel.shake { animation:shake .35s; }
+@keyframes shake { 20%{transform:translateX(-8px)} 40%{transform:translateX(8px)} 60%{transform:translateX(-5px)} 80%{transform:translateX(5px)} }
+@keyframes glow  { from{box-shadow:0 0 10px #2ff} to{box-shadow:0 0 40px #5ff} }
+
+/* Buttons: change width to resize them */
+.slot { position:relative; width:12%; aspect-ratio:1; display:flex; flex-direction:column; align-items:center; }
+.btn {
+  width:100%; aspect-ratio:1; border:0; padding:0; cursor:pointer;
+  background:url("Button.png") center/100% 100% no-repeat;
+  image-rendering:pixelated;
+  box-shadow:0 6px 0 #1d1d1d, 0 8px 10px rgba(0,0,0,.5);
+  transition:transform .08s, box-shadow .08s, filter .08s;
+  outline-offset:3px;
+}
+.btn:hover { filter:brightness(1.12); }
+.btn:focus-visible { outline:3px solid #fff; }
+
+/* Locked look: edit this to change how a locked button appears */
+.btn.locked {
+  transform:translateY(6px);
+  box-shadow:0 0 0 #1d1d1d, inset 0 0 0 4px rgba(0,0,0,.35);
+  filter:brightness(.55) sepia(1) hue-rotate(130deg) saturate(2.2);
+}
+
+/* Indicator lamp above each button */
+/*.lamp { position:absolute; top:-16%; width:22%; aspect-ratio:1; background:#0a2b30; border:2px solid #021; image-rendering:pixelated; }
+.btn.locked ~ .lamp { background:#4ff; box-shadow:0 0 8px #4ff; }*/
+
+#msg { min-height:1.5em; font-size:1.1rem; color:var(--dim); text-align:center; }
+#msg.ok { color:var(--ink); }
+#reset { font:inherit; background:none; color:var(--ink); border:2px solid var(--dim); padding:6px 14px; cursor:pointer; }
+#reset:hover, #reset:focus-visible { border-color:var(--ink); }
+
+@media (prefers-reduced-motion:reduce) { * { animation:none !important; transition:none !important; } }
