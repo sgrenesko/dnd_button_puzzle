@@ -22,7 +22,7 @@ body {
 @keyframes glow  { from{box-shadow:0 0 10px #2ff} to{box-shadow:0 0 40px #5ff} }
 
 /* Buttons: change width to resize them */
-.slot { position:relative; width:12%; aspect-ratio:1; display:flex; flex-direction:column; align-items:center; }
+.slot { position:relative; width:100px; height:100px; flex-shrink:0; display:flex; flex-direction:column; align-items:center; }
 .btn {
   width:100%; aspect-ratio:1; border:0; padding:0; cursor:pointer;
   background:url("Button.png") center/100% 100% no-repeat;
